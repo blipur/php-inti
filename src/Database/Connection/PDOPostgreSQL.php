@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Imadepurnamayasa\PhpInti\Database\Connection;
 
-class PDOOracle extends PDOConnection
+class PDOPostgreSQL extends PDOConnection
 {
     public function getDsn(): string
     {
-        return "oci:dbname=//$this->host:$this->port/$this->dbname;charset=AL32UTF8";
+        return "pgsql:host=$this->host;port=$this->port;dbname=$this->dbname";
     }
 }

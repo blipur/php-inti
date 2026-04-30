@@ -8,6 +8,6 @@ class PDOSQLServer extends PDOConnection
 {
     public function getDsn(): string
     {
-        return "";
+        return "sqlsrv:Server=$this->host,$this->port;Database=$this->dbname";
     }
 }
