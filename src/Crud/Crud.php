@@ -8,30 +8,30 @@ use Imadepurnamayasa\PhpInti\Database\Connection\ConnectionInterface;
 
 /**
  * Class Crud
- * Kelas abstrak dasar yang mengimplementasikan antarmuka CrudInterface. 
- * Menyediakan kerangka dasar pengaturan tabel, kolom, dan tipe data untuk operasi CRUD.
+ * Base abstract class implementing the CrudInterface. 
+ * Provides the foundational framework for managing tables, columns, and data types for CRUD operations.
  */
 abstract class Crud implements CrudInterface
 {    
-    /** @var ConnectionInterface Objek koneksi basis data. */
+    /** @var ConnectionInterface Database connection object. */
     protected ConnectionInterface $pdo;
 
-    /** @var string Nama tabel basis data yang akan dikelola. */
+    /** @var string Name of the database table to manage. */
     protected string $table = '';
 
-    /** @var array Daftar primary key tabel (bisa lebih dari satu kolom untuk composite key). */
+    /** @var array List of primary key columns (supports composite keys). */
     protected array $primaryKeys = [];
 
-    /** @var array Daftar pemetaan nama kolom dengan tipe datanya. */
+    /** @var array Mapping of column names to their data types. */
     protected array $columnTypes = [];
 
-    /** @var array Daftar kolom yang disembunyikan (tidak ditampilkan di UI/Grid). */
+    /** @var array List of hidden columns (not displayed in UI/Grid). */
     protected array $hideColumns = [];
 
     /**
-     * Konstruktor Crud.
+     * Crud constructor.
      *
-     * @param ConnectionInterface $pdo Objek koneksi basis data.
+     * @param ConnectionInterface $pdo Database connection object.
      */
     public function __construct(ConnectionInterface $pdo)
     {
@@ -39,9 +39,9 @@ abstract class Crud implements CrudInterface
     }
 
     /**
-     * Menentukan nama tabel basis data.
+     * Sets the database table name.
      *
-     * @param string $table Nama tabel.
+     * @param string $table Table name.
      * @return void
      */
     public function table(string $table)
@@ -50,9 +50,9 @@ abstract class Crud implements CrudInterface
     }
 
     /**
-     * Menentukan kolom mana saja yang menjadi primary key.
+     * Defines the primary key columns.
      *
-     * @param array $columns Array berisi nama-nama kolom primary key.
+     * @param array $columns Array of primary key column names.
      * @return void
      */
     public function primaryKeys(array $columns)
@@ -61,9 +61,9 @@ abstract class Crud implements CrudInterface
     }
 
     /**
-     * Mendefinisikan tipe data untuk kolom-kolom tertentu (misal untuk casting form).
+     * Defines data types for specific columns (e.g., for form casting).
      *
-     * @param array $columns Array pemetaan nama kolom ke tipe (misal: ['id' => 'int', 'nama' => 'string']).
+     * @param array $columns Mapping of column names to types (e.g., ['id' => 'int', 'name' => 'string']).
      * @return void
      */
     public function columnTypes(array $columns)
@@ -72,9 +72,9 @@ abstract class Crud implements CrudInterface
     }
 
     /**
-     * Menentukan daftar kolom yang harus disembunyikan dari tampilan.
+     * Defines the list of columns to be hidden from views.
      *
-     * @param array $columns Array berisi nama-nama kolom yang akan disembunyikan.
+     * @param array $columns Array of column names to hide.
      * @return void
      */
     public function hideColumns(array $columns)

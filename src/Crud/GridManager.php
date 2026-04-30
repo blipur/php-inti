@@ -6,27 +6,27 @@ namespace Imadepurnamayasa\PhpInti\Crud;
 
 /**
  * Class GridManager
- * Utilitas untuk mengelola dan merender tabel/grid data dalam bentuk HTML.
+ * Utility for managing and rendering data grids/tables in HTML format.
  */
 class GridManager
 {
-    /** @var array Array dua dimensi yang menyimpan data baris dan kolom. */
+    /** @var array Two-dimensional array storing row and column data. */
     private $grid;
 
-    /** @var int Jumlah baris. */
+    /** @var int Number of rows. */
     private $rows;
 
-    /** @var int Jumlah kolom. */
+    /** @var int Number of columns. */
     private $cols;
 
-    /** @var array Array satu dimensi untuk menyimpan judul kolom (header). */
+    /** @var array One-dimensional array storing column headers. */
     private $headers;
 
     /**
-     * Konstruktor GridManager.
+     * GridManager constructor.
      *
-     * @param int $rows Jumlah awal baris (default 0).
-     * @param int $cols Jumlah kolom.
+     * @param int $rows Initial number of rows (default 0).
+     * @param int $cols Number of columns.
      */
     public function __construct($rows = 0, $cols)
     {
@@ -44,7 +44,7 @@ class GridManager
     }
 
     /**
-     * Menambahkan baris kosong baru ke bagian bawah grid.
+     * Adds a new empty row to the bottom of the grid.
      *
      * @return void
      */
@@ -59,12 +59,12 @@ class GridManager
     }
 
     /**
-     * Mengatur nilai (value) untuk sel tertentu berdasarkan indeks baris dan kolom.
+     * Sets the value for a specific cell based on row and column index.
      *
-     * @param int $row Indeks baris (mulai dari 0).
-     * @param int $col Indeks kolom (mulai dari 0).
-     * @param mixed $value Nilai yang akan dimasukkan ke dalam sel.
-     * @return bool True jika berhasil diatur, false jika indeks tidak valid.
+     * @param int $row Row index (starts from 0).
+     * @param int $col Column index (starts from 0).
+     * @param mixed $value The value to insert into the cell.
+     * @return bool True if set successfully, false if index is invalid.
      */
     public function setCellValue($row, $col, $value)
     {
@@ -76,11 +76,11 @@ class GridManager
     }
 
     /**
-     * Mengambil nilai sel pada indeks baris dan kolom tertentu.
+     * Retrieves the cell value at a specific row and column index.
      *
-     * @param int $row Indeks baris.
-     * @param int $col Indeks kolom.
-     * @return mixed|null Nilai sel atau null jika indeks tidak valid.
+     * @param int $row Row index.
+     * @param int $col Column index.
+     * @return mixed|null Cell value or null if index is invalid.
      */
     public function getCellValue($row, $col)
     {
@@ -91,11 +91,11 @@ class GridManager
     }
 
     /**
-     * Mengatur teks judul (header) untuk kolom tertentu.
+     * Sets the header text for a specific column.
      *
-     * @param int $col Indeks kolom.
-     * @param string $header Teks judul header.
-     * @return bool True jika berhasil, false jika indeks kolom tidak valid.
+     * @param int $col Column index.
+     * @param string $header Header text.
+     * @return bool True if successful, false if column index is invalid.
      */
     public function setColumnHeader($col, $header)
     {
@@ -107,9 +107,9 @@ class GridManager
     }
 
     /**
-     * Merender data grid menjadi sebuah elemen tabel HTML murni.
+     * Renders the grid data into a pure HTML table element.
      *
-     * @return string String yang berisi elemen <table> HTML.
+     * @return string String containing the HTML <table> element.
      */
     public function renderTable()
     {
@@ -135,11 +135,11 @@ class GridManager
     }
 
     /**
-     * Memeriksa apakah indeks baris dan kolom berada dalam batas grid yang ada.
+     * Checks whether the row and column indices are within the existing grid bounds.
      *
-     * @param int $row Indeks baris.
-     * @param int $col Indeks kolom.
-     * @return bool True jika valid, false sebaliknya.
+     * @param int $row Row index.
+     * @param int $col Column index.
+     * @return bool True if valid, false otherwise.
      */
     private function isValidCell($row, $col)
     {

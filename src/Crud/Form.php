@@ -14,16 +14,16 @@ use PDO;
 
 /**
  * Class Form
- * Kelas turunan Crud untuk membangun antarmuka form HTML secara dinamis berdasarkan metadata tabel basis data.
+ * Extended Crud class to dynamically build HTML form interfaces based on database table metadata.
  */
 class Form extends Crud
 {
     /**
-     * Memproses permintaan dan merender elemen form HTML berdasarkan struktur tabel.
-     * Secara otomatis membaca parameter GET untuk menentukan mode (insert/update) dan mengambil data yang sesuai.
+     * Processes the request and renders HTML form elements based on the table structure.
+     * Automatically reads GET parameters to determine the mode (insert/update) and retrieves the corresponding data.
      *
-     * @param string $action Aksi spesifik form (default: kosong).
-     * @return string HTML yang berisi elemen <form> dan input-input di dalamnya.
+     * @param string $action Specific form action (default: empty).
+     * @return string HTML containing the <form> element and its inputs.
      */
     public function process(string $action = '')
     {
