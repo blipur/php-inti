@@ -8,10 +8,18 @@ use DateTime;
 use Imadepurnamayasa\PhpInti\Database\ORM;
 use Imadepurnamayasa\PhpInti\Helpers;
 
+/**
+ * Class BaseUser
+ * Kelas abstrak dasar yang menyediakan fitur autentikasi dan manajemen token pengguna.
+ */
 abstract class BaseUser extends ORM
 {
+    /** @var string Nama tabel basis data. */
     protected $table = 'users';
+
+    /** @var string Nama primary key tabel. */
     protected $primaryKey = 'id';
+
     public $id = 'id';
     public $username = 'username';
     public $password = 'password';
@@ -20,6 +28,13 @@ abstract class BaseUser extends ORM
     public $tokenExpired = 'token_expired';
     public $secretKey = 'your_secret_key';
 
+    /**
+     * Mengautentikasi pengguna berdasarkan username dan password.
+     *
+     * @param string $username Username yang akan diotentikasi.
+     * @param string $password Kata sandi.
+     * @return bool True jika autentikasi berhasil, false sebaliknya.
+     */
     public function loginByUsername($username, $password)
     {
         $stmt = $this->pdo->getConnection()->prepare("SELECT * FROM {$this->table} WHERE {$this->username} = ?");
@@ -40,6 +55,13 @@ abstract class BaseUser extends ORM
         return false;
     }
 
+    /**
+     * Mengautentikasi pengguna berdasarkan email dan password.
+     *
+     * @param string $email Email pengguna.
+     * @param string $password Kata sandi.
+     * @return bool True jika autentikasi berhasil, false sebaliknya.
+     */
     public function loginByEmail($email, $password)
     {
         $stmt = $this->pdo->getConnection()->prepare("SELECT * FROM {$this->table} WHERE {$this->email} = ?");
@@ -59,6 +81,13 @@ abstract class BaseUser extends ORM
         return false;
     }
 
+    /**
+     * Menghasilkan token JWT baru untuk pengguna berdasarkan username dan menyimpannya di basis data.
+     *
+     * @param mixed $id ID pengguna.
+     * @param string $username Username.
+     * @return string Token JWT yang dihasilkan.
+     */
     public function generateTokenUsername($id, $username)
     {
         $exp = time() + (60 * 60); // Token expiration time (1 hour)
@@ -89,6 +118,13 @@ abstract class BaseUser extends ORM
         return $this->token;
     }
 
+    /**
+     * Menghasilkan token JWT baru untuk pengguna berdasarkan email dan menyimpannya di basis data.
+     *
+     * @param mixed $id ID pengguna.
+     * @param string $email Email.
+     * @return string Token JWT yang dihasilkan.
+     */
     public function generateTokenEmail($id, $email)
     {
         $exp = time() + (60 * 60); // Token expiration time (1 hour)
@@ -119,6 +155,12 @@ abstract class BaseUser extends ORM
         return $this->token;
     }
 
+    /**
+     * Memvalidasi token JWT berdasarkan signature dan waktu kadaluarsa (username payload).
+     *
+     * @param string $token Token JWT yang akan divalidasi.
+     * @return array|false Payload token jika valid, false sebaliknya.
+     */
     public function validateTokenUsername($token)
     {
         $tokenParts = explode('.', $token);
@@ -142,6 +184,12 @@ abstract class BaseUser extends ORM
         }
     }
 
+    /**
+     * Memvalidasi token JWT berdasarkan signature dan waktu kadaluarsa (email payload).
+     *
+     * @param string $token Token JWT yang akan divalidasi.
+     * @return array|false Payload token jika valid, false sebaliknya.
+     */
     public function validateTokenEmail($token)
     {
         $tokenParts = explode('.', $token);

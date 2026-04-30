@@ -4,13 +4,31 @@ declare(strict_types=1);
 
 namespace Imadepurnamayasa\PhpInti\Authentication;
 
+/**
+ * Class JsonAuth
+ * Utilitas sederhana untuk autentikasi berbasis JSON Web Token (JWT) menggunakan array statis.
+ */
 class JsonAuth
 {
+    /**
+     * @var array Daftar pengguna statis. Ganti dengan data kredensial sesungguhnya atau hubungkan ke basis data.
+     */
     private $users = [
         'user' => 'password' // Replace with your actual user credentials
     ];
+
+    /**
+     * @var string Kunci rahasia untuk menandatangani JWT. Ganti dengan kunci Anda sendiri.
+     */
     private $secretKey = 'your_secret_key'; // Replace with your actual secret key
 
+    /**
+     * Mengautentikasi pengguna berdasarkan username dan password.
+     *
+     * @param string $username Username pengguna.
+     * @param string $password Kata sandi pengguna.
+     * @return bool True jika autentikasi berhasil, false jika sebaliknya.
+     */
     public function authenticate($username, $password)
     {
         // Check if the username exists and the password matches
@@ -21,6 +39,12 @@ class JsonAuth
         }
     }
 
+    /**
+     * Menghasilkan JSON Web Token (JWT) untuk pengguna.
+     *
+     * @param string $username Username yang akan dimasukkan ke payload token.
+     * @return string Token JWT yang ditandatangani.
+     */
     public function generateToken($username)
     {
         // Create a JSON Web Token (JWT)
@@ -41,6 +65,12 @@ class JsonAuth
         return "$base64UrlHeader.$base64UrlPayload.$base64UrlSignature";
     }
 
+    /**
+     * Memvalidasi keabsahan token JWT yang diberikan.
+     *
+     * @param string $token Token JWT yang ingin divalidasi.
+     * @return string|false Username dari payload jika token valid, false jika tidak valid atau kadaluarsa.
+     */
     public function validateToken($token)
     {
         $tokenParts = explode('.', $token);

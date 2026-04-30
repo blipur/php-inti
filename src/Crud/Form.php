@@ -12,8 +12,19 @@ use Imadepurnamayasa\PhpInti\Html\Tag\Label;
 use Imadepurnamayasa\PhpInti\Html\Tag\TextArea;
 use PDO;
 
+/**
+ * Class Form
+ * Kelas turunan Crud untuk membangun antarmuka form HTML secara dinamis berdasarkan metadata tabel basis data.
+ */
 class Form extends Crud
 {
+    /**
+     * Memproses permintaan dan merender elemen form HTML berdasarkan struktur tabel.
+     * Secara otomatis membaca parameter GET untuk menentukan mode (insert/update) dan mengambil data yang sesuai.
+     *
+     * @param string $action Aksi spesifik form (default: kosong).
+     * @return string HTML yang berisi elemen <form> dan input-input di dalamnya.
+     */
     public function process(string $action = '')
     {
         $get = $_GET;

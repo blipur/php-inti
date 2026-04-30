@@ -4,10 +4,20 @@ declare(strict_types=1);
 
 namespace Imadepurnamayasa\PhpInti;
 
+/**
+ * Class Terbilang
+ * Utilitas untuk mengonversi angka numerik menjadi teks (terbilang) dalam Bahasa Indonesia.
+ */
 class Terbilang
 {
+    /**
+     * @var array Daftar kata untuk konversi angka dasar.
+     */
     private $kata;
 
+    /**
+     * Constructor untuk inisialisasi kamus kata.
+     */
     public function __construct()
     {
         $this->kata = array(
@@ -42,6 +52,12 @@ class Terbilang
         );
     }
 
+    /**
+     * Mengonversi angka menjadi string terbilang.
+     *
+     * @param int|float $angka Angka yang akan dikonversi (maksimal 999999999999999).
+     * @return string Hasil konversi ke dalam bentuk teks.
+     */
     public function konversi($angka)
     {
         if ($angka < 0 || $angka > 999999999999999) {
@@ -97,6 +113,12 @@ class Terbilang
         return trim($hasil);
     }
 
+    /**
+     * Metode internal untuk mengonversi kelompok angka (puluhan dan satuan).
+     *
+     * @param int|float $angka Angka yang akan dikonversi.
+     * @return string Hasil konversi kelompok angka.
+     */
     private function konversiKelompok($angka)
     {
         $hasil = '';

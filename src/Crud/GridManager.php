@@ -4,13 +4,30 @@ declare(strict_types=1);
 
 namespace Imadepurnamayasa\PhpInti\Crud;
 
+/**
+ * Class GridManager
+ * Utilitas untuk mengelola dan merender tabel/grid data dalam bentuk HTML.
+ */
 class GridManager
 {
+    /** @var array Array dua dimensi yang menyimpan data baris dan kolom. */
     private $grid;
+
+    /** @var int Jumlah baris. */
     private $rows;
+
+    /** @var int Jumlah kolom. */
     private $cols;
+
+    /** @var array Array satu dimensi untuk menyimpan judul kolom (header). */
     private $headers;
 
+    /**
+     * Konstruktor GridManager.
+     *
+     * @param int $rows Jumlah awal baris (default 0).
+     * @param int $cols Jumlah kolom.
+     */
     public function __construct($rows = 0, $cols)
     {
         $this->rows = $rows;
@@ -26,7 +43,11 @@ class GridManager
         }
     }
 
-    // Add a row to the grid
+    /**
+     * Menambahkan baris kosong baru ke bagian bawah grid.
+     *
+     * @return void
+     */
     public function addRow()
     {
         $row = [];
@@ -37,7 +58,14 @@ class GridManager
         $this->rows++;
     }
 
-    // Set cell value
+    /**
+     * Mengatur nilai (value) untuk sel tertentu berdasarkan indeks baris dan kolom.
+     *
+     * @param int $row Indeks baris (mulai dari 0).
+     * @param int $col Indeks kolom (mulai dari 0).
+     * @param mixed $value Nilai yang akan dimasukkan ke dalam sel.
+     * @return bool True jika berhasil diatur, false jika indeks tidak valid.
+     */
     public function setCellValue($row, $col, $value)
     {
         if ($this->isValidCell($row, $col)) {
@@ -47,7 +75,13 @@ class GridManager
         return false;
     }
 
-    // Get cell value
+    /**
+     * Mengambil nilai sel pada indeks baris dan kolom tertentu.
+     *
+     * @param int $row Indeks baris.
+     * @param int $col Indeks kolom.
+     * @return mixed|null Nilai sel atau null jika indeks tidak valid.
+     */
     public function getCellValue($row, $col)
     {
         if ($this->isValidCell($row, $col)) {
@@ -56,7 +90,13 @@ class GridManager
         return null;
     }
 
-    // Set column header
+    /**
+     * Mengatur teks judul (header) untuk kolom tertentu.
+     *
+     * @param int $col Indeks kolom.
+     * @param string $header Teks judul header.
+     * @return bool True jika berhasil, false jika indeks kolom tidak valid.
+     */
     public function setColumnHeader($col, $header)
     {
         if ($col >= 0 && $col < $this->cols) {
@@ -66,7 +106,11 @@ class GridManager
         return false;
     }
 
-    // Render table
+    /**
+     * Merender data grid menjadi sebuah elemen tabel HTML murni.
+     *
+     * @return string String yang berisi elemen <table> HTML.
+     */
     public function renderTable()
     {
         $table = '<table border="1">';
@@ -90,7 +134,13 @@ class GridManager
         return $table;
     }
 
-    // Check if cell is valid
+    /**
+     * Memeriksa apakah indeks baris dan kolom berada dalam batas grid yang ada.
+     *
+     * @param int $row Indeks baris.
+     * @param int $col Indeks kolom.
+     * @return bool True jika valid, false sebaliknya.
+     */
     private function isValidCell($row, $col)
     {
         return isset($this->grid[$row]) && isset($this->grid[$row][$col]);
