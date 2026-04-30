@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imadepurnamayasa\PhpInti\ActiveRecord;
+namespace Imadepurnamayasa\PhpInti\Database\ActiveRecord;
 
 use Imadepurnamayasa\PhpInti\Database\Connection\ConnectionInterface;
 use PDO;

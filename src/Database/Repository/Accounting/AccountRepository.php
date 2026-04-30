@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imadepurnamayasa\PhpInti\Repository\Accounting;
+namespace Imadepurnamayasa\PhpInti\Database\Repository\Accounting;
 
-use Imadepurnamayasa\PhpInti\Dao\Accounting\AccountDao;
+use Imadepurnamayasa\PhpInti\Database\Dao\Accounting\AccountDao;
 use Imadepurnamayasa\PhpInti\Entity\Accounting\Account;
-use Imadepurnamayasa\PhpInti\Repository\AbstractRepository;
+use Imadepurnamayasa\PhpInti\Database\Repository\AbstractRepository;
 
 /**
  * Class AccountRepository

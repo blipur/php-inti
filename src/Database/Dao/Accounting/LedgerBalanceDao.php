@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Imadepurnamayasa\PhpInti\Dao\Accounting;
+namespace Imadepurnamayasa\PhpInti\Database\Dao\Accounting;
 
-use Imadepurnamayasa\PhpInti\Dao\AbstractDao;
+use Imadepurnamayasa\PhpInti\Database\Dao\AbstractDao;
 use Imadepurnamayasa\PhpInti\Entity\Accounting\LedgerBalance;
 use Imadepurnamayasa\PhpInti\Entity\Entity;
 

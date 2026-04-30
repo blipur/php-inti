@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Imadepurnamayasa\PhpInti\ActiveRecord\Models;
+namespace Imadepurnamayasa\PhpInti\Database\ActiveRecord\Models;
 
-use Imadepurnamayasa\PhpInti\ActiveRecord\ActiveRecord;
+use Imadepurnamayasa\PhpInti\Database\ActiveRecord\ActiveRecord;
 
 /**
  * Class Product

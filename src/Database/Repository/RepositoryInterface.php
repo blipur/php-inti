@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imadepurnamayasa\PhpInti\Repository;
+namespace Imadepurnamayasa\PhpInti\Database\Repository;
 
 use Imadepurnamayasa\PhpInti\Entity\Entity;
 

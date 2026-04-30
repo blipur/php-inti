@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imadepurnamayasa\PhpInti\Dao;
+namespace Imadepurnamayasa\PhpInti\Database\Dao;
 
 use Imadepurnamayasa\PhpInti\Database\Connection\ConnectionInterface;
 use Imadepurnamayasa\PhpInti\Entity\Entity;
